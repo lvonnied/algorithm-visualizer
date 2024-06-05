@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ArrayService } from '../services/array.service';
 
 @Component({
   selector: 'app-home',
@@ -9,16 +10,17 @@ import { CommonModule } from '@angular/common';
   styleUrl: './home.component.css'
 })
 export class HomeComponent implements OnInit {
-  randomArray: Array<number> = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+  randomArray: Array<number> = [];
 
-  constructor() {
-  }
+  constructor(private arrayService: ArrayService) { }
 
   ngOnInit() {
-    this.generateRandomArray();
+    this.arrayService.arrayLength$.subscribe(length => {
+      this.generateRandomArray(length);
+    });
   }
 
-  generateRandomArray() {
-    this.randomArray = this.randomArray.map(() => Math.floor(Math.random() * 750) + 1);
+  generateRandomArray(length: number) {
+    this.randomArray = Array.from({ length }, () => Math.floor(Math.random() * 100) + 1);
   }
 }

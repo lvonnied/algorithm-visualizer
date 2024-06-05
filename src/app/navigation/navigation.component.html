@@ -1,5 +1,8 @@
+<!-- src/app/navigation/navigation.component.html -->
 <mat-toolbar color="primary">
     <mat-toolbar-row>
-        <span>Gugus</span>
+        <select id="array-length" (change)="onLengthChange($event)">
+            <option *ngFor="let length of arrayLengths" [value]="length">{{ length }}</option>
+        </select>
     </mat-toolbar-row>
 </mat-toolbar>
