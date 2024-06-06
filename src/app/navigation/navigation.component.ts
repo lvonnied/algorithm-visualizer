@@ -17,11 +17,14 @@ export class NavigationComponent {
   constructor(private arrayService: ArrayService) { }
 
   onLengthChange(newLength: number) {
-    console.log("Selected length:", newLength);
     this.arrayService.setArrayLength(newLength);
   }
 
   randomizeArray() {
     this.arrayService.randomizeCurrentArray();
+  }
+
+  mergeSort() {
+    this.arrayService.mergeSort();
   }
 }

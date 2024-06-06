@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+import { MergeSortService } from './merge-sort.service';
 
 @Injectable({
   providedIn: 'root'
@@ -7,6 +8,8 @@ import { BehaviorSubject } from 'rxjs';
 export class ArrayService {
   private currentArray = new BehaviorSubject<number[]>(this.generateRandomArray(10));
   currentArray$ = this.currentArray.asObservable();
+
+  constructor(private mergeSortService: MergeSortService) { }
 
   setArrayLength(length: number) {
     this.currentArray.next(this.generateRandomArray(length));
@@ -23,5 +26,11 @@ export class ArrayService {
 
   getCurrentArray(): number[] {
     return this.currentArray.getValue();
+  }
+
+  mergeSort() {
+    const array = this.currentArray.getValue();
+    this.mergeSortService.mergeSort(array, 0, array.length - 1);
+    this.currentArray.next(array);
   }
 }
