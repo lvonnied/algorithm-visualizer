@@ -1,8 +1,14 @@
-<!-- src/app/navigation/navigation.component.html -->
 <mat-toolbar color="primary">
     <mat-toolbar-row>
-        <select id="array-length" (change)="onLengthChange($event)">
-            <option *ngFor="let length of arrayLengths" [value]="length">{{ length }}</option>
-        </select>
+        <p>Algorithm Visualizer</p>
+        <button class="menuButton" mat-button [matMenuTriggerFor]="menu">Array Size</button>
+        <mat-menu #menu="matMenu">
+            <button mat-menu-item (click)="onLengthChange(10)">10</button>
+            <button mat-menu-item (click)="onLengthChange(20)">20</button>
+            <button mat-menu-item (click)="onLengthChange(30)">30</button>
+            <button mat-menu-item (click)="onLengthChange(40)">40</button>
+            <button mat-menu-item (click)="onLengthChange(50)">50</button>
+        </mat-menu>
+        <button mat-button (click)="randomizeArray()">Randomize</button>
     </mat-toolbar-row>
 </mat-toolbar>
