@@ -7,18 +7,18 @@ export class MergeSortService {
 
   constructor() { }
 
-  mergeSort(array: number[], left: number, right: number) {
+  async mergeSort(array: number[], left: number, right: number) {
     if (left >= right) {
       return;
     }
 
     const mid = Math.floor((left + right) / 2);
-    this.mergeSort(array, left, mid);
-    this.mergeSort(array, mid + 1, right);
-    this.merge(array, left, mid, right);
+    await this.mergeSort(array, left, mid);
+    await this.mergeSort(array, mid + 1, right);
+    await this.merge(array, left, mid, right);
   }
 
-  merge(array: number[], left: number, mid: number, right: number) {
+  async merge(array: number[], left: number, mid: number, right: number) {
     const leftArray = array.slice(left, mid + 1);
     const rightArray = array.slice(mid + 1, right + 1);
 
@@ -38,5 +38,7 @@ export class MergeSortService {
     while (j < rightArray.length) {
       array[k++] = rightArray[j++];
     }
+
+    await new Promise(resolve => setTimeout(resolve, 1000));
   }
 }

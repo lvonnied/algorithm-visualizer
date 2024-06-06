@@ -28,9 +28,9 @@ export class ArrayService {
     return this.currentArray.getValue();
   }
 
-  mergeSort() {
+  async mergeSort() {
     const array = this.currentArray.getValue();
-    this.mergeSortService.mergeSort(array, 0, array.length - 1);
+    await this.mergeSortService.mergeSort(array, 0, array.length - 1);
     this.currentArray.next(array);
   }
 }
