@@ -1,3 +1,8 @@
 .menuButton {
     margin-left: 1vh;
 }
+
+.sort-button {
+    position: absolute;
+    right: 1vh;
+}
