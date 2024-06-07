@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { MergeSortService } from './merge-sort.service';
+import { Bar } from '../models/Bar';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ArrayService {
-  private currentArray = new BehaviorSubject<number[]>(this.generateRandomArray(10));
+  private currentArray = new BehaviorSubject<Bar[]>(this.generateRandomArray(10));
   currentArray$ = this.currentArray.asObservable();
 
   constructor(private mergeSortService: MergeSortService) { }
@@ -15,8 +16,11 @@ export class ArrayService {
     this.currentArray.next(this.generateRandomArray(length));
   }
 
-  generateRandomArray(length: number): number[] {
-    return Array.from({ length }, () => Math.floor(Math.random() * 750) + 1);
+  generateRandomArray(length: number): Bar[] {
+    return Array.from({ length }, () => ({
+      height: Math.floor(Math.random() * 750) + 1,
+      backgroundColor: 'black'
+    }));
   }
 
   randomizeCurrentArray() {
@@ -24,13 +28,16 @@ export class ArrayService {
     this.currentArray.next(this.generateRandomArray(length));
   }
 
-  getCurrentArray(): number[] {
+  getCurrentArray(): Bar[] {
     return this.currentArray.getValue();
   }
 
   async mergeSort() {
     const array = this.currentArray.getValue();
     await this.mergeSortService.mergeSort(array, 0, array.length - 1);
+    for (let i = 0; i < array.length; i++) {
+      array[i].backgroundColor = '#673ab7';
+    }
     this.currentArray.next(array);
   }
 }

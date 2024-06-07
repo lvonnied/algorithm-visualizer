@@ -1,5 +1,6 @@
 <div class="container">
-    <div class="bar-container" *ngFor="let number of randomArray">
-        <div class="bar" [style.height.px]="number" [style.width.px]="barWidth"></div>
+    <div class="bar-container" *ngFor="let bar of randomArray">
+        <div class="bar" [style.height.px]="bar.height" [style.width.px]="barWidth"
+            [style.background-color]="bar.backgroundColor"></div>
     </div>
 </div>

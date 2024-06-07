@@ -1,6 +1,7 @@
 import { Component, HostListener, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ArrayService } from '../services/array.service';
+import { Bar } from '../models/Bar';
 
 @Component({
   selector: 'app-home',
@@ -10,7 +11,7 @@ import { ArrayService } from '../services/array.service';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  randomArray: number[] = [];
+  randomArray: Bar[] = [];
   barWidth: number = 10;
 
   constructor(private arrayService: ArrayService) { }
