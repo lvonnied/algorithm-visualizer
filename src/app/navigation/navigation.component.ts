@@ -14,6 +14,8 @@ import { MatButtonModule } from '@angular/material/button';
 })
 export class NavigationComponent {
 
+  isSorting: boolean = false;
+
   constructor(private arrayService: ArrayService) { }
 
   onLengthChange(newLength: number) {
@@ -24,7 +26,9 @@ export class NavigationComponent {
     this.arrayService.randomizeCurrentArray();
   }
 
-  mergeSort() {
-    this.arrayService.mergeSort();
+  async mergeSort() {
+    this.isSorting = true;
+    await this.arrayService.mergeSort();
+    this.isSorting = false;
   }
 }
