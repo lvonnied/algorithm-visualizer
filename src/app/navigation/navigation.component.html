@@ -1,15 +1,39 @@
 <mat-toolbar color="primary">
     <mat-toolbar-row>
         <p>Algorithm Visualizer</p>
-        <button class="menuButton" mat-button [matMenuTriggerFor]="menu">Array Size</button>
-        <mat-menu #menu="matMenu">
-            <button mat-menu-item (click)="onLengthChange(10)">10</button>
-            <button mat-menu-item (click)="onLengthChange(20)">20</button>
-            <button mat-menu-item (click)="onLengthChange(30)">30</button>
-            <button mat-menu-item (click)="onLengthChange(40)">40</button>
-            <button mat-menu-item (click)="onLengthChange(50)">50</button>
-        </mat-menu>
-        <button mat-button (click)="randomizeArray()">Randomize</button>
-        <button class="sort-button" mat-raised-button (click)="mergeSort()" [disabled]="isSorting">Sort</button>
+
+        <!-- Standard Menu for larger screens -->
+        <div class="menu-container">
+            <button class="menuButton" mat-button [matMenuTriggerFor]="menu" [disabled]="isSorting">Array Size</button>
+            <mat-menu #menu="matMenu">
+                <button mat-menu-item (click)="onLengthChange(10)">10</button>
+                <button mat-menu-item (click)="onLengthChange(20)">20</button>
+                <button mat-menu-item (click)="onLengthChange(30)">30</button>
+                <button mat-menu-item (click)="onLengthChange(40)">40</button>
+                <button mat-menu-item (click)="onLengthChange(50)">50</button>
+            </mat-menu>
+            <button mat-button (click)="randomizeArray()" [disabled]="isSorting">Randomize</button>
+            <button class="sort-button" mat-raised-button (click)="mergeSort()" [disabled]="isSorting">Sort</button>
+        </div>
+
+        <!-- Responsive Menu for smaller screens -->
+        <div class="more-options-button">
+            <button class="three-dots-button" mat-icon-button [matMenuTriggerFor]="responsiveMenu"
+                [disabled]="isSorting">
+                <mat-icon>more_vert</mat-icon>
+            </button>
+            <mat-menu #responsiveMenu="matMenu">
+                <button mat-menu-item [matMenuTriggerFor]="arrayMenu">Array Size</button>
+                <mat-menu #arrayMenu="matMenu">
+                    <button mat-menu-item (click)="onLengthChange(10)">10</button>
+                    <button mat-menu-item (click)="onLengthChange(20)">20</button>
+                    <button mat-menu-item (click)="onLengthChange(30)">30</button>
+                    <button mat-menu-item (click)="onLengthChange(40)">40</button>
+                    <button mat-menu-item (click)="onLengthChange(50)">50</button>
+                </mat-menu>
+                <button mat-menu-item (click)="randomizeArray()">Randomize</button>
+                <button mat-menu-item (click)="mergeSort()" [disabled]="isSorting">Sort</button>
+            </mat-menu>
+        </div>
     </mat-toolbar-row>
 </mat-toolbar>
