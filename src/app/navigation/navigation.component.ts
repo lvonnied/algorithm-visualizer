@@ -5,17 +5,20 @@ import { CommonModule } from '@angular/common';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { MatRadioModule } from '@angular/material/radio';
 
 @Component({
   selector: 'app-navigation',
   standalone: true,
-  imports: [MatToolbar, MatToolbarRow, CommonModule, MatMenuModule, MatButtonModule, MatIconModule],
+  imports: [MatToolbar, MatToolbarRow, CommonModule, MatMenuModule, MatButtonModule, MatIconModule, MatRadioModule],
   templateUrl: './navigation.component.html',
   styleUrl: './navigation.component.css'
 })
 export class NavigationComponent {
 
   isSorting: boolean = false;
+
+  selectedAlgorithm: string = 'Merge Sort';
 
   constructor(private arrayService: ArrayService) { }
 
@@ -27,7 +30,7 @@ export class NavigationComponent {
     this.arrayService.randomizeCurrentArray();
   }
 
-  async mergeSort() {
+  async sort(algorithm: string) {
     this.isSorting = true;
     await this.arrayService.mergeSort();
     this.isSorting = false;
