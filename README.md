@@ -42,7 +42,7 @@
     <a href="https://github.com/lvonnied/algorithm-visualizer"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://github.com/lvonnied/algorithm-visualizer">View Demo</a>
+    <a href="https://lvonnied.github.io/algorithm-visualizer">View Demo</a>
     ·
     <a href="https://github.com/lvonnied/algorithm-visualizer/issues/new?labels=bug&template=bug-report---.md">Report Bug</a>
     ·
@@ -120,8 +120,6 @@ To run this locally you need Angular CLI installed. If you don't have it, you ca
 
 Choose the algorithm you want to visualize from the dropdown menu. You can also choose the array size. The array will be generated randomly. You can then click on the "Sort" button to see the algorithm in action.
 
-_For more examples, please refer to the [Documentation](https://example.com)_
-
 <!-- ROADMAP -->
 ## Roadmap
 
@@ -152,7 +150,7 @@ Project Link: [https://github.com/lvonnied/algorithm-visualizer](https://github.
 <!-- ACKNOWLEDGMENTS -->
 ## Acknowledgments
 
-* -
+* None
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
