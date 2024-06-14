@@ -6,6 +6,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatRadioModule } from '@angular/material/radio';
+import { SortingAlgorithm } from '../models/Algorithm';
 
 @Component({
   selector: 'app-navigation',
@@ -18,7 +19,8 @@ export class NavigationComponent {
 
   isSorting: boolean = false;
 
-  selectedAlgorithm: string = 'Merge Sort';
+  selectedAlgorithm: SortingAlgorithm = SortingAlgorithm.MergeSort;
+  SortingAlgorithm = SortingAlgorithm;
 
   constructor(private arrayService: ArrayService) { }
 
@@ -30,9 +32,9 @@ export class NavigationComponent {
     this.arrayService.randomizeCurrentArray();
   }
 
-  async sort(algorithm: string) {
+  async sort() {
     this.isSorting = true;
-    await this.arrayService.mergeSort();
+    await this.arrayService.sort(this.selectedAlgorithm);
     this.isSorting = false;
   }
 }
