@@ -3,6 +3,7 @@ import { BehaviorSubject } from 'rxjs';
 import { MergeSortService } from './merge-sort.service';
 import { Bar } from '../models/Bar';
 import { SortingAlgorithm } from '../models/Algorithm';
+import { QuickSortService } from './quick-sort.service';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,7 @@ export class ArrayService {
   private currentArray = new BehaviorSubject<Bar[]>(this.generateRandomArray(10));
   currentArray$ = this.currentArray.asObservable();
 
-  constructor(private mergeSortService: MergeSortService) { }
+  constructor(private mergeSortService: MergeSortService, private quickSortService: QuickSortService) { }
 
   setArrayLength(length: number) {
     this.currentArray.next(this.generateRandomArray(length));
@@ -37,13 +38,13 @@ export class ArrayService {
     const array = this.currentArray.getValue();
     switch (algorithm) {
       case SortingAlgorithm.MergeSort:
-        await this.mergeSort(array);
+        await this.mergeSortService.mergeSort(array, 0, array.length - 1);
         break;
       case SortingAlgorithm.SelectionSort:
         // Implement selection sort here
         break;
       case SortingAlgorithm.QuickSort:
-        // Implement quick sort here
+        await this.quickSortService.quickSort(array, 0, array.length - 1);
         break;
       case SortingAlgorithm.BogoSort:
         // Implement bogo sort here
@@ -53,9 +54,5 @@ export class ArrayService {
       array[i].backgroundColor = '#673ab7';
     }
     this.currentArray.next(array);
-  }
-
-  async mergeSort(array: Bar[]) {
-    await this.mergeSortService.mergeSort(array, 0, array.length - 1);
   }
 }
